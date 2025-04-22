@@ -1,0 +1,1164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shareempdb>
+    <schema>
+        <![CDATA[
+        CREATE TABLE Firmen (
+            FirmaID INT PRIMARY KEY,
+            Name VARCHAR(255),
+            Adresse VARCHAR(255)
+        );
+
+        CREATE TABLE Mitarbeiter (
+            MitarbeiterID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            Vorname VARCHAR(255) DEFAULT NULL,
+            Nachname VARCHAR(255) DEFAULT NULL,
+            Straße VARCHAR(255) DEFAULT NULL,
+            PLZ VARCHAR(20) DEFAULT NULL,
+            Ort VARCHAR(255) DEFAULT NULL,
+            Telefon VARCHAR(50) DEFAULT NULL,
+            Email VARCHAR(255) DEFAULT NULL
+        );
+
+        CREATE TABLE Externe_Mitarbeiter (
+            ExterneID INT PRIMARY KEY,
+            Vorname VARCHAR(255),
+            Nachname VARCHAR(255),
+            Straße VARCHAR(255),
+            PLZ VARCHAR(20),
+            Ort VARCHAR(255),
+            Telefon VARCHAR(50),
+            Email VARCHAR(255),
+            FirmaID INT,
+            FOREIGN KEY (FirmaID) REFERENCES Firmen(FirmaID)
+        );
+
+        CREATE TABLE Kunden (
+            KundenID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            Vorname VARCHAR(255),
+            Nachname VARCHAR(255),
+            Straße VARCHAR(255),
+            PLZ VARCHAR(20),
+            Ort VARCHAR(255),
+            Telefon VARCHAR(50),
+            Email VARCHAR(255),
+            Branche VARCHAR(255)
+        );
+
+        CREATE TABLE Mitarbeiter_Kunden (
+            MitarbeiterID INT NOT NULL,
+            KundenID INT NOT NULL,
+            PRIMARY KEY (MitarbeiterID, KundenID),
+            FOREIGN KEY (MitarbeiterID) REFERENCES Mitarbeiter(MitarbeiterID) ON DELETE CASCADE,
+            FOREIGN KEY (KundenID) REFERENCES Kunden(KundenID)
+        );
+        ]]>
+    </schema>
+
+    <firmen>
+        <firma>
+            <FirmaID>1</FirmaID>
+            <Name>TechCorp</Name>
+            <Adresse>Musterstraße 1, Berlin</Adresse>
+        </firma>
+        <firma>
+            <FirmaID>2</FirmaID>
+            <Name>InnoSoft</Name>
+            <Adresse>Innovationsweg 5, Hamburg</Adresse>
+        </firma>
+        <firma>
+            <FirmaID>3</FirmaID>
+            <Name>DataSolutions</Name>
+            <Adresse>Hauptstraße 23, München</Adresse>
+        </firma>
+    </firmen>
+
+    <mitarbeiter>
+        <person>
+            <MitarbeiterID>1</MitarbeiterID>
+            <Vorname>Max</Vorname>
+            <Nachname>Müller</Nachname>
+            <Straße>Beispielstraße 10</Straße>
+            <PLZ>10115</PLZ>
+            <Ort>Berlin</Ort>
+            <Telefon>030123456</Telefon>
+            <Email>max.mueller@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>2</MitarbeiterID>
+            <Vorname>Lisa</Vorname>
+            <Nachname>Schneider</Nachname>
+            <Straße>Hauptstraße 5</Straße>
+            <PLZ>20095</PLZ>
+            <Ort>Hamburg</Ort>
+            <Telefon>040987654</Telefon>
+            <Email>lisa.schneider@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>3</MitarbeiterID>
+            <Vorname>Peter</Vorname>
+            <Nachname>Fischer</Nachname>
+            <Straße>Bahnhofstraße 7</Straße>
+            <PLZ>80331</PLZ>
+            <Ort>München</Ort>
+            <Telefon>089123456</Telefon>
+            <Email>peter.fischer@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>4</MitarbeiterID>
+            <Vorname>Anna</Vorname>
+            <Nachname>Weber</Nachname>
+            <Straße>Schulstraße 3</Straße>
+            <PLZ>70173</PLZ>
+            <Ort>Stuttgart</Ort>
+            <Telefon>0711123456</Telefon>
+            <Email>anna.weber@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>5</MitarbeiterID>
+            <Vorname>Thomas</Vorname>
+            <Nachname>Schäfer</Nachname>
+            <Straße>Marktstraße 12</Straße>
+            <PLZ>50667</PLZ>
+            <Ort>Köln</Ort>
+            <Telefon>0221123456</Telefon>
+            <Email>thomas.schaefer@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>6</MitarbeiterID>
+            <Vorname>Julia</Vorname>
+            <Nachname>Wagner</Nachname>
+            <Straße>Lindenweg 4</Straße>
+            <PLZ>04109</PLZ>
+            <Ort>Leipzig</Ort>
+            <Telefon>0341123456</Telefon>
+            <Email>julia.wagner@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>7</MitarbeiterID>
+            <Vorname>Stefan</Vorname>
+            <Nachname>Becker</Nachname>
+            <Straße>Gartenstraße 8</Straße>
+            <PLZ>01067</PLZ>
+            <Ort>Dresden</Ort>
+            <Telefon>0351123456</Telefon>
+            <Email>stefan.becker@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>8</MitarbeiterID>
+            <Vorname>Laura</Vorname>
+            <Nachname>Hoffmann</Nachname>
+            <Straße>Dorfstraße 2</Straße>
+            <PLZ>99084</PLZ>
+            <Ort>Erfurt</Ort>
+            <Telefon>0361123456</Telefon>
+            <Email>laura.hoffmann@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>9</MitarbeiterID>
+            <Vorname>Jan</Vorname>
+            <Nachname>Schmidt</Nachname>
+            <Straße>Am See 9</Straße>
+            <PLZ>28195</PLZ>
+            <Ort>Bremen</Ort>
+            <Telefon>0421123456</Telefon>
+            <Email>jan.schmidt@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>10</MitarbeiterID>
+            <Vorname>Sophie</Vorname>
+            <Nachname>Schneider</Nachname>
+            <Straße>Ringstraße 14</Straße>
+            <PLZ>60311</PLZ>
+            <Ort>Frankfurt</Ort>
+            <Telefon>0691123456</Telefon>
+            <Email>sophie.schneider@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>11</MitarbeiterID>
+            <Vorname>Nina</Vorname>
+            <Nachname>Koch</Nachname>
+            <Straße>Bergstraße 11</Straße>
+            <PLZ>30159</PLZ>
+            <Ort>Hannover</Ort>
+            <Telefon>0511123456</Telefon>
+            <Email>nina.koch@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>12</MitarbeiterID>
+            <Vorname>Felix</Vorname>
+            <Nachname>Richter</Nachname>
+            <Straße>Talweg 6</Straße>
+            <PLZ>90402</PLZ>
+            <Ort>Nürnberg</Ort>
+            <Telefon>0911123456</Telefon>
+            <Email>felix.richter@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>13</MitarbeiterID>
+            <Vorname>Clara</Vorname>
+            <Nachname>Lang</Nachname>
+            <Straße>Seestraße 15</Straße>
+            <PLZ>99423</PLZ>
+            <Ort>Weimar</Ort>
+            <Telefon>0362123456</Telefon>
+            <Email>clara.lang@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>14</MitarbeiterID>
+            <Vorname>Jonas</Vorname>
+            <Nachname>Krüger</Nachname>
+            <Straße>Industriestraße 20</Straße>
+            <PLZ>45127</PLZ>
+            <Ort>Essen</Ort>
+            <Telefon>0201123456</Telefon>
+            <Email>jonas.krueger@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>15</MitarbeiterID>
+            <Vorname>Lea</Vorname>
+            <Nachname>Wolf</Nachname>
+            <Straße>Parkstraße 8</Straße>
+            <PLZ>80333</PLZ>
+            <Ort>München</Ort>
+            <Telefon>0892123456</Telefon>
+            <Email>lea.wolf@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>16</MitarbeiterID>
+            <Vorname>Tim</Vorname>
+            <Nachname>Schmitt</Nachname>
+            <Straße>Gewerbestraße 3</Straße>
+            <PLZ>50670</PLZ>
+            <Ort>Köln</Ort>
+            <Telefon>0222123456</Telefon>
+            <Email>tim.schmitt@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>17</MitarbeiterID>
+            <Vorname>Mia</Vorname>
+            <Nachname>Neumann</Nachname>
+            <Straße>Hauptstraße 22</Straße>
+            <PLZ>53111</PLZ>
+            <Ort>Bonn</Ort>
+            <Telefon>0223123456</Telefon>
+            <Email>mia.neumann@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>18</MitarbeiterID>
+            <Vorname>David</Vorname>
+            <Nachname>Schulz</Nachname>
+            <Straße>Wiesenweg 7</Straße>
+            <PLZ>04229</PLZ>
+            <Ort>Leipzig</Ort>
+            <Telefon>0342123456</Telefon>
+            <Email>david.schulz@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>19</MitarbeiterID>
+            <Vorname>Sina</Vorname>
+            <Nachname>Maier</Nachname>
+            <Straße>Eichenweg 5</Straße>
+            <PLZ>04103</PLZ>
+            <Ort>Leipzig</Ort>
+            <Telefon>0343123456</Telefon>
+            <Email>sina.maier@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>20</MitarbeiterID>
+            <Vorname>Luca</Vorname>
+            <Nachname>Krause</Nachname>
+            <Straße>Mühlenstraße 16</Straße>
+            <PLZ>04107</PLZ>
+            <Ort>Leipzig</Ort>
+            <Telefon>0344123456</Telefon>
+            <Email>luca.krause@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>21</MitarbeiterID>
+            <Vorname>Marlene</Vorname>
+            <Nachname>Huber</Nachname>
+            <Straße>Feldstraße 4</Straße>
+            <PLZ>99423</PLZ>
+            <Ort>Weimar</Ort>
+            <Telefon>0363123456</Telefon>
+            <Email>marlene.huber@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>22</MitarbeiterID>
+            <Vorname>Erik</Vorname>
+            <Nachname>Pohl</Nachname>
+            <Straße>Sonnenstraße 9</Straße>
+            <PLZ>01069</PLZ>
+            <Ort>Dresden</Ort>
+            <Telefon>0352123456</Telefon>
+            <Email>erik.pohl@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>23</MitarbeiterID>
+            <Vorname>Paula</Vorname>
+            <Nachname>Fink</Nachname>
+            <Straße>Kirchstraße 12</Straße>
+            <PLZ>01097</PLZ>
+            <Ort>Dresden</Ort>
+            <Telefon>0353123456</Telefon>
+            <Email>paula.fink@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>24</MitarbeiterID>
+            <Vorname>Kevin</Vorname>
+            <Nachname>Jäger</Nachname>
+            <Straße>Hainstraße 10</Straße>
+            <PLZ>10117</PLZ>
+            <Ort>Berlin</Ort>
+            <Telefon>0302123456</Telefon>
+            <Email>kevin.jaeger@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>25</MitarbeiterID>
+            <Vorname>Emma</Vorname>
+            <Nachname>Schulte</Nachname>
+            <Straße>Waldweg 7</Straße>
+            <PLZ>01099</PLZ>
+            <Ort>Dresden</Ort>
+            <Telefon>0354123456</Telefon>
+            <Email>emma.schulte@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>26</MitarbeiterID>
+            <Vorname>Luis</Vorname>
+            <Nachname>Böhm</Nachname>
+            <Straße>Brückenstraße 5</Straße>
+            <PLZ>80335</PLZ>
+            <Ort>München</Ort>
+            <Telefon>0893123456</Telefon>
+            <Email>luis.boehm@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>27</MitarbeiterID>
+            <Vorname>Sabrina</Vorname>
+            <Nachname>Huber</Nachname>
+            <Straße>Steinstrasse 8</Straße>
+            <PLZ>70174</PLZ>
+            <Ort>Stuttgart</Ort>
+            <Telefon>0712123456</Telefon>
+            <Email>sabrina.huber@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>28</MitarbeiterID>
+            <Vorname>Marvin</Vorname>
+            <Nachname>Köhler</Nachname>
+            <Straße>Am Park 3</Straße>
+            <PLZ>20099</PLZ>
+            <Ort>Hamburg</Ort>
+            <Telefon>0402123456</Telefon>
+            <Email>marvin.koehler@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>29</MitarbeiterID>
+            <Vorname>Fiona</Vorname>
+            <Nachname>Ziegler</Nachname>
+            <Straße>Schillerstraße 14</Straße>
+            <PLZ>60313</PLZ>
+            <Ort>Frankfurt</Ort>
+            <Telefon>0692123456</Telefon>
+            <Email>fiona.ziegler@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>30</MitarbeiterID>
+            <Vorname>Julian</Vorname>
+            <Nachname>Seidel</Nachname>
+            <Straße>Goethestraße 1</Straße>
+            <PLZ>80336</PLZ>
+            <Ort>München</Ort>
+            <Telefon>0894123456</Telefon>
+            <Email>julian.seidel@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>31</MitarbeiterID>
+            <Vorname>Paula</Vorname>
+            <Nachname>Huber</Nachname>
+            <Straße>Lindenallee 11</Straße>
+            <PLZ>30161</PLZ>
+            <Ort>Hannover</Ort>
+            <Telefon>0512123456</Telefon>
+            <Email>paula.huber@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>32</MitarbeiterID>
+            <Vorname>Marc</Vorname>
+            <Nachname>Schmitt</Nachname>
+            <Straße>Industriestraße 7</Straße>
+            <PLZ>45128</PLZ>
+            <Ort>Essen</Ort>
+            <Telefon>0202123456</Telefon>
+            <Email>marc.schmitt@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>33</MitarbeiterID>
+            <Vorname>Tina</Vorname>
+            <Nachname>Vogel</Nachname>
+            <Straße>Am Markt 9</Straße>
+            <PLZ>50668</PLZ>
+            <Ort>Köln</Ort>
+            <Telefon>0224123456</Telefon>
+            <Email>tina.vogel@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>34</MitarbeiterID>
+            <Vorname>Oliver</Vorname>
+            <Nachname>Fuchs</Nachname>
+            <Straße>Bergstraße 18</Straße>
+            <PLZ>01069</PLZ>
+            <Ort>Dresden</Ort>
+            <Telefon>0355123456</Telefon>
+            <Email>oliver.fuchs@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>35</MitarbeiterID>
+            <Vorname>Nora</Vorname>
+            <Nachname>Meyer</Nachname>
+            <Straße>Hauptweg 6</Straße>
+            <PLZ>04109</PLZ>
+            <Ort>Leipzig</Ort>
+            <Telefon>0345123456</Telefon>
+            <Email>nora.meyer@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>36</MitarbeiterID>
+            <Vorname>Daniel</Vorname>
+            <Nachname>Klein</Nachname>
+            <Straße>Mühlenweg 4</Straße>
+            <PLZ>01097</PLZ>
+            <Ort>Dresden</Ort>
+            <Telefon>0356123456</Telefon>
+            <Email>daniel.klein@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>37</MitarbeiterID>
+            <Vorname>Carla</Vorname>
+            <Nachname>Schneider</Nachname>
+            <Straße>Am Wald 2</Straße>
+            <PLZ>20097</PLZ>
+            <Ort>Hamburg</Ort>
+            <Telefon>0403123456</Telefon>
+            <Email>carla.schneider@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>38</MitarbeiterID>
+            <Vorname>Simon</Vorname>
+            <Nachname>Köhler</Nachname>
+            <Straße>Hauptstraße 20</Straße>
+            <PLZ>80331</PLZ>
+            <Ort>München</Ort>
+            <Telefon>0895123456</Telefon>
+            <Email>simon.koehler@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>39</MitarbeiterID>
+            <Vorname>Mona</Vorname>
+            <Nachname>Beck</Nachname>
+            <Straße>Bahnhofstraße 12</Straße>
+            <PLZ>28195</PLZ>
+            <Ort>Bremen</Ort>
+            <Telefon>0422123456</Telefon>
+            <Email>mona.beck@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>40</MitarbeiterID>
+            <Vorname>Lars</Vorname>
+            <Nachname>Bauer</Nachname>
+            <Straße>Dorfweg 3</Straße>
+            <PLZ>99423</PLZ>
+            <Ort>Weimar</Ort>
+            <Telefon>0366123456</Telefon>
+            <Email>lars.bauer@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>41</MitarbeiterID>
+            <Vorname>Jana</Vorname>
+            <Nachname>Schulze</Nachname>
+            <Straße>Seestraße 4</Straße>
+            <PLZ>04103</PLZ>
+            <Ort>Leipzig</Ort>
+            <Telefon>0346123456</Telefon>
+            <Email>jana.schulze@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>42</MitarbeiterID>
+            <Vorname>Felix</Vorname>
+            <Nachname>Wolf</Nachname>
+            <Straße>Hainweg 8</Straße>
+            <PLZ>10119</PLZ>
+            <Ort>Berlin</Ort>
+            <Telefon>0303123456</Telefon>
+            <Email>felix.wolf@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>43</MitarbeiterID>
+            <Vorname>Carsten</Vorname>
+            <Nachname>Richter</Nachname>
+            <Straße>Feldweg 7</Straße>
+            <PLZ>45127</PLZ>
+            <Ort>Essen</Ort>
+            <Telefon>0203123456</Telefon>
+            <Email>carsten.richter@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>44</MitarbeiterID>
+            <Vorname>Silvia</Vorname>
+            <Nachname>Schwarz</Nachname>
+            <Straße>Sonnenweg 5</Straße>
+            <PLZ>50667</PLZ>
+            <Ort>Köln</Ort>
+            <Telefon>0225123456</Telefon>
+            <Email>silvia.schwarz@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>45</MitarbeiterID>
+            <Vorname>Ralf</Vorname>
+            <Nachname>Müller</Nachname>
+            <Straße>Marktweg 10</Straße>
+            <PLZ>60311</PLZ>
+            <Ort>Frankfurt</Ort>
+            <Telefon>0693123456</Telefon>
+            <Email>ralf.mueller@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>46</MitarbeiterID>
+            <Vorname>Gina</Vorname>
+            <Nachname>Schmitz</Nachname>
+            <Straße>Parkweg 12</Straße>
+            <PLZ>70173</PLZ>
+            <Ort>Stuttgart</Ort>
+            <Telefon>0713123456</Telefon>
+            <Email>gina.schmitz@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>47</MitarbeiterID>
+            <Vorname>Erwin</Vorname>
+            <Nachname>Fischer</Nachname>
+            <Straße>Hauptstraße 30</Straße>
+            <PLZ>20095</PLZ>
+            <Ort>Hamburg</Ort>
+            <Telefon>0404123456</Telefon>
+            <Email>erwin.fischer@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>48</MitarbeiterID>
+            <Vorname>Katharina</Vorname>
+            <Nachname>Becker</Nachname>
+            <Straße>Ringweg 9</Straße>
+            <PLZ>80333</PLZ>
+            <Ort>München</Ort>
+            <Telefon>0896123456</Telefon>
+            <Email>katharina.becker@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>49</MitarbeiterID>
+            <Vorname>Lena</Vorname>
+            <Nachname>Maier</Nachname>
+            <Straße>Schulweg 6</Straße>
+            <PLZ>01067</PLZ>
+            <Ort>Dresden</Ort>
+            <Telefon>0357123456</Telefon>
+            <Email>lena.maier@email.com</Email>
+        </person>
+        <person>
+            <MitarbeiterID>50</MitarbeiterID>
+            <Vorname>Moritz</Vorname>
+            <Nachname>Schulte</Nachname>
+            <Straße>Brunnenstraße 11</Straße>
+            <PLZ>04107</PLZ>
+            <Ort>Leipzig</Ort>
+            <Telefon>0347123456</Telefon>
+            <Email>moritz.schulte@email.com</Email>
+        </person>
+    </mitarbeiter>
+
+    <externe_mitarbeiter>
+        <person>
+            <ExterneID>1</ExterneID>
+            <Vorname>John</Vorname>
+            <Nachname>Doe</Nachname>
+            <Straße>Weststraße 3</Straße>
+            <PLZ>60311</PLZ>
+            <Ort>Frankfurt</Ort>
+            <Telefon>069112233</Telefon>
+            <Email>john.doe@firma.com</Email>
+            <FirmaID>1</FirmaID>
+        </person>
+        <person>
+            <ExterneID>2</ExterneID>
+            <Vorname>Anna</Vorname>
+            <Nachname>Fischer</Nachname>
+            <Straße>Nordweg 8</Straße>
+            <PLZ>50667</PLZ>
+            <Ort>Köln</Ort>
+            <Telefon>0221123456</Telefon>
+            <Email>anna.fischer@firma.com</Email>
+            <FirmaID>2</FirmaID>
+        </person>
+    </externe_mitarbeiter>
+    <kunden>
+        <kunde>
+            <KundenID>1</KundenID>
+            <Vorname>Karl</Vorname>
+            <Nachname>Meier</Nachname>
+            <Straße>Ringstraße 45</Straße>
+            <PLZ>70173</PLZ>
+            <Ort>Stuttgart</Ort>
+            <Telefon>0711123456</Telefon>
+            <Email>karl.meier@kunde.com</Email>
+            <Branche>IT-Beratung</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>2</KundenID>
+            <Vorname>Sabine</Vorname>
+            <Nachname>Schmidt</Nachname>
+            <Straße>Platz der Republik 1</Straße>
+            <PLZ>60327</PLZ>
+            <Ort>Frankfurt</Ort>
+            <Telefon>069998877</Telefon>
+            <Email>sabine.schmidt@kunde.com</Email>
+            <Branche>Marketing</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>3</KundenID>
+            <Vorname>Jürgen</Vorname>
+            <Nachname>Fischer</Nachname>
+            <Straße>Hauptstraße 10</Straße>
+            <PLZ>10115</PLZ>
+            <Ort>Berlin</Ort>
+            <Telefon>0301234567</Telefon>
+            <Email>juergen.fischer@kunde.com</Email>
+            <Branche>Finanzen</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>4</KundenID>
+            <Vorname>Monika</Vorname>
+            <Nachname>Keller</Nachname>
+            <Straße>Bahnhofstraße 22</Straße>
+            <PLZ>80331</PLZ>
+            <Ort>München</Ort>
+            <Telefon>0891234567</Telefon>
+            <Email>monika.keller@kunde.com</Email>
+            <Branche>Automobil</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>5</KundenID>
+            <Vorname>Uwe</Vorname>
+            <Nachname>Schwarz</Nachname>
+            <Straße>Goethestraße 5</Straße>
+            <PLZ>70173</PLZ>
+            <Ort>Stuttgart</Ort>
+            <Telefon>0711123987</Telefon>
+            <Email>uwe.schwarz@kunde.com</Email>
+            <Branche>IT-Beratung</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>6</KundenID>
+            <Vorname>Petra</Vorname>
+            <Nachname>Neumann</Nachname>
+            <Straße>Lindenweg 3</Straße>
+            <PLZ>20095</PLZ>
+            <Ort>Hamburg</Ort>
+            <Telefon>0401234567</Telefon>
+            <Email>petra.neumann@kunde.com</Email>
+            <Branche>Logistik</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>7</KundenID>
+            <Vorname>Horst</Vorname>
+            <Nachname>Koch</Nachname>
+            <Straße>Marktplatz 7</Straße>
+            <PLZ>60311</PLZ>
+            <Ort>Frankfurt</Ort>
+            <Telefon>0691234567</Telefon>
+            <Email>horst.koch@kunde.com</Email>
+            <Branche>Beratung</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>8</KundenID>
+            <Vorname>Ingrid</Vorname>
+            <Nachname>Bauer</Nachname>
+            <Straße>Hauptweg 8</Straße>
+            <PLZ>30159</PLZ>
+            <Ort>Hannover</Ort>
+            <Telefon>0511234567</Telefon>
+            <Email>ingrid.bauer@kunde.com</Email>
+            <Branche>Versicherung</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>9</KundenID>
+            <Vorname>Rolf</Vorname>
+            <Nachname>Wagner</Nachname>
+            <Straße>Schillerstraße 12</Straße>
+            <PLZ>90402</PLZ>
+            <Ort>Nürnberg</Ort>
+            <Telefon>0911234567</Telefon>
+            <Email>rolf.wagner@kunde.com</Email>
+            <Branche>Pharma</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>10</KundenID>
+            <Vorname>Kerstin</Vorname>
+            <Nachname>Huber</Nachname>
+            <Straße>Am Wald 9</Straße>
+            <PLZ>99423</PLZ>
+            <Ort>Weimar</Ort>
+            <Telefon>0361123457</Telefon>
+            <Email>kerstin.huber@kunde.com</Email>
+            <Branche>IT-Beratung</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>11</KundenID>
+            <Vorname>Detlef</Vorname>
+            <Nachname>Pohl</Nachname>
+            <Straße>Industriestraße 15</Straße>
+            <PLZ>45127</PLZ>
+            <Ort>Essen</Ort>
+            <Telefon>0201234567</Telefon>
+            <Email>detlef.pohl@kunde.com</Email>
+            <Branche>Maschinenbau</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>12</KundenID>
+            <Vorname>Sabrina</Vorname>
+            <Nachname>Richter</Nachname>
+            <Straße>Bergstraße 20</Straße>
+            <PLZ>28195</PLZ>
+            <Ort>Bremen</Ort>
+            <Telefon>0421234567</Telefon>
+            <Email>sabrina.richter@kunde.com</Email>
+            <Branche>Marketing</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>13</KundenID>
+            <Vorname>Andreas</Vorname>
+            <Nachname>Krüger</Nachname>
+            <Straße>Seestraße 3</Straße>
+            <PLZ>60327</PLZ>
+            <Ort>Frankfurt</Ort>
+            <Telefon>0692234567</Telefon>
+            <Email>andreas.krueger@kunde.com</Email>
+            <Branche>Finanzen</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>14</KundenID>
+            <Vorname>Birgit</Vorname>
+            <Nachname>Schulz</Nachname>
+            <Straße>Mühlenstraße 8</Straße>
+            <PLZ>80335</PLZ>
+            <Ort>München</Ort>
+            <Telefon>0892234567</Telefon>
+            <Email>birgit.schulz@kunde.com</Email>
+            <Branche>IT-Beratung</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>15</KundenID>
+            <Vorname>Frank</Vorname>
+            <Nachname>Mueller</Nachname>
+            <Straße>Dorfstraße 1</Straße>
+            <PLZ>20099</PLZ>
+            <Ort>Hamburg</Ort>
+            <Telefon>0402234567</Telefon>
+            <Email>frank.mueller@kunde.com</Email>
+            <Branche>Baugewerbe</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>16</KundenID>
+            <Vorname>Andrea</Vorname>
+            <Nachname>Klein</Nachname>
+            <Straße>Am Park 4</Straße>
+            <PLZ>70174</PLZ>
+            <Ort>Stuttgart</Ort>
+            <Telefon>0711223456</Telefon>
+            <Email>andrea.klein@kunde.com</Email>
+            <Branche>Einzelhandel</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>17</KundenID>
+            <Vorname>Martin</Vorname>
+            <Nachname>Schmidt</Nachname>
+            <Straße>Lindenallee 7</Straße>
+            <PLZ>10117</PLZ>
+            <Ort>Berlin</Ort>
+            <Telefon>0302234567</Telefon>
+            <Email>martin.schmidt@kunde.com</Email>
+            <Branche>Consulting</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>18</KundenID>
+            <Vorname>Claudia</Vorname>
+            <Nachname>Fischer</Nachname>
+            <Straße>Hauptstraße 3</Straße>
+            <PLZ>60311</PLZ>
+            <Ort>Frankfurt</Ort>
+            <Telefon>0693234567</Telefon>
+            <Email>claudia.fischer@kunde.com</Email>
+            <Branche>IT-Beratung</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>19</KundenID>
+            <Vorname>Holger</Vorname>
+            <Nachname>Schneider</Nachname>
+            <Straße>Bahnhofstraße 9</Straße>
+            <PLZ>80331</PLZ>
+            <Ort>München</Ort>
+            <Telefon>0893234567</Telefon>
+            <Email>holger.schneider@kunde.com</Email>
+            <Branche>Finanzen</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>20</KundenID>
+            <Vorname>Martina</Vorname>
+            <Nachname>Böhm</Nachname>
+            <Straße>Platz der Republik 4</Straße>
+            <PLZ>20095</PLZ>
+            <Ort>Hamburg</Ort>
+            <Telefon>0403234567</Telefon>
+            <Email>martina.boehm@kunde.com</Email>
+            <Branche>Marketing</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>21</KundenID>
+            <Vorname>Stefan</Vorname>
+            <Nachname>Maier</Nachname>
+            <Straße>Ringstraße 7</Straße>
+            <PLZ>70173</PLZ>
+            <Ort>Stuttgart</Ort>
+            <Telefon>0711323456</Telefon>
+            <Email>stefan.maier@kunde.com</Email>
+            <Branche>IT-Beratung</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>22</KundenID>
+            <Vorname>Nicole</Vorname>
+            <Nachname>Becker</Nachname>
+            <Straße>Goethestraße 11</Straße>
+            <PLZ>10115</PLZ>
+            <Ort>Berlin</Ort>
+            <Telefon>0303234567</Telefon>
+            <Email>nicole.becker@kunde.com</Email>
+            <Branche>Logistik</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>23</KundenID>
+            <Vorname>Rainer</Vorname>
+            <Nachname>Kraft</Nachname>
+            <Straße>Marktstraße 2</Straße>
+            <PLZ>60327</PLZ>
+            <Ort>Frankfurt</Ort>
+            <Telefon>0694234567</Telefon>
+            <Email>rainer.kraft@kunde.com</Email>
+            <Branche>Beratung</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>24</KundenID>
+            <Vorname>Silke</Vorname>
+            <Nachname>Seidel</Nachname>
+            <Straße>Hauptweg 5</Straße>
+            <PLZ>30159</PLZ>
+            <Ort>Hannover</Ort>
+            <Telefon>0512234567</Telefon>
+            <Email>silke.seidel@kunde.com</Email>
+            <Branche>Versicherung</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>25</KundenID>
+            <Vorname>Florian</Vorname>
+            <Nachname>Wolf</Nachname>
+            <Straße>Schulstraße 10</Straße>
+            <PLZ>90402</PLZ>
+            <Ort>Nürnberg</Ort>
+            <Telefon>0912234567</Telefon>
+            <Email>florian.wolf@kunde.com</Email>
+            <Branche>Pharma</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>26</KundenID>
+            <Vorname>Christina</Vorname>
+            <Nachname>Lange</Nachname>
+            <Straße>Am See 6</Straße>
+            <PLZ>99423</PLZ>
+            <Ort>Weimar</Ort>
+            <Telefon>0362123457</Telefon>
+            <Email>christina.lange@kunde.com</Email>
+            <Branche>IT-Beratung</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>27</KundenID>
+            <Vorname>Dirk</Vorname>
+            <Nachname>Schmitt</Nachname>
+            <Straße>Industriestraße 3</Straße>
+            <PLZ>45127</PLZ>
+            <Ort>Essen</Ort>
+            <Telefon>0202234567</Telefon>
+            <Email>dirk.schmitt@kunde.com</Email>
+            <Branche>Maschinenbau</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>28</KundenID>
+            <Vorname>Eva</Vorname>
+            <Nachname>Jung</Nachname>
+            <Straße>Bergstraße 9</Straße>
+            <PLZ>28195</PLZ>
+            <Ort>Bremen</Ort>
+            <Telefon>0422234567</Telefon>
+            <Email>eva.jung@kunde.com</Email>
+            <Branche>Marketing</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>29</KundenID>
+            <Vorname>Patrick</Vorname>
+            <Nachname>Schwarz</Nachname>
+            <Straße>Seestraße 13</Straße>
+            <PLZ>60327</PLZ>
+            <Ort>Frankfurt</Ort>
+            <Telefon>0695234567</Telefon>
+            <Email>patrick.schwarz@kunde.com</Email>
+            <Branche>Finanzen</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>30</KundenID>
+            <Vorname>Julia</Vorname>
+            <Nachname>Neumann</Nachname>
+            <Straße>Mühlenweg 11</Straße>
+            <PLZ>80335</PLZ>
+            <Ort>München</Ort>
+            <Telefon>0894234567</Telefon>
+            <Email>julia.neumann@kunde.com</Email>
+            <Branche>IT-Beratung</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>31</KundenID>
+            <Vorname>Martin</Vorname>
+            <Nachname>Huber</Nachname>
+            <Straße>Dorfweg 8</Straße>
+            <PLZ>20099</PLZ>
+            <Ort>Hamburg</Ort>
+            <Telefon>0404234567</Telefon>
+            <Email>martin.huber@kunde.com</Email>
+            <Branche>Baugewerbe</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>32</KundenID>
+            <Vorname>Heike</Vorname>
+            <Nachname>Schulze</Nachname>
+            <Straße>Am Park 2</Straße>
+            <PLZ>70174</PLZ>
+            <Ort>Stuttgart</Ort>
+            <Telefon>0711423456</Telefon>
+            <Email>heike.schulze@kunde.com</Email>
+            <Branche>Einzelhandel</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>33</KundenID>
+            <Vorname>Markus</Vorname>
+            <Nachname>Meyer</Nachname>
+            <Straße>Lindenweg 6</Straße>
+            <PLZ>10115</PLZ>
+            <Ort>Berlin</Ort>
+            <Telefon>0304234567</Telefon>
+            <Email>markus.meyer@kunde.com</Email>
+            <Branche>Consulting</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>34</KundenID>
+            <Vorname>Andrea</Vorname>
+            <Nachname>Fink</Nachname>
+            <Straße>Hauptstraße 7</Straße>
+            <PLZ>60311</PLZ>
+            <Ort>Frankfurt</Ort>
+            <Telefon>0696234567</Telefon>
+            <Email>andrea.fink@kunde.com</Email>
+            <Branche>IT-Beratung</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>35</KundenID>
+            <Vorname>Sven</Vorname>
+            <Nachname>Koch</Nachname>
+            <Straße>Bahnhofstraße 15</Straße>
+            <PLZ>80331</PLZ>
+            <Ort>München</Ort>
+            <Telefon>0895234567</Telefon>
+            <Email>sven.koch@kunde.com</Email>
+            <Branche>Finanzen</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>36</KundenID>
+            <Vorname>Judith</Vorname>
+            <Nachname>Vogel</Nachname>
+            <Straße>Platz der Freiheit 3</Straße>
+            <PLZ>20095</PLZ>
+            <Ort>Hamburg</Ort>
+            <Telefon>0405234567</Telefon>
+            <Email>judith.vogel@kunde.com</Email>
+            <Branche>Marketing</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>37</KundenID>
+            <Vorname>Lars</Vorname>
+            <Nachname>Jäger</Nachname>
+            <Straße>Ringstraße 12</Straße>
+            <PLZ>70173</PLZ>
+            <Ort>Stuttgart</Ort>
+            <Telefon>0711523456</Telefon>
+            <Email>lars.jaeger@kunde.com</Email>
+            <Branche>IT-Beratung</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>38</KundenID>
+            <Vorname>Vanessa</Vorname>
+            <Nachname>Schulte</Nachname>
+            <Straße>Goethestraße 8</Straße>
+            <PLZ>10115</PLZ>
+            <Ort>Berlin</Ort>
+            <Telefon>0305234567</Telefon>
+            <Email>vanessa.schulte@kunde.com</Email>
+            <Branche>Logistik</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>39</KundenID>
+            <Vorname>Tobias</Vorname>
+            <Nachname>Bauer</Nachname>
+            <Straße>Marktweg 4</Straße>
+            <PLZ>60327</PLZ>
+            <Ort>Frankfurt</Ort>
+            <Telefon>0697234567</Telefon>
+            <Email>tobias.bauer@kunde.com</Email>
+            <Branche>Beratung</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>40</KundenID>
+            <Vorname>Kathrin</Vorname>
+            <Nachname>Schneider</Nachname>
+            <Straße>Hauptweg 9</Straße>
+            <PLZ>30159</PLZ>
+            <Ort>Hannover</Ort>
+            <Telefon>0513234567</Telefon>
+            <Email>kathrin.schneider@kunde.com</Email>
+            <Branche>Versicherung</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>41</KundenID>
+            <Vorname>Jens</Vorname>
+            <Nachname>Wolf</Nachname>
+            <Straße>Schulstraße 2</Straße>
+            <PLZ>90402</PLZ>
+            <Ort>Nürnberg</Ort>
+            <Telefon>0913234567</Telefon>
+            <Email>jens.wolf@kunde.com</Email>
+            <Branche>Pharma</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>42</KundenID>
+            <Vorname>Veronika</Vorname>
+            <Nachname>Lange</Nachname>
+            <Straße>Am See 10</Straße>
+            <PLZ>99423</PLZ>
+            <Ort>Weimar</Ort>
+            <Telefon>0363123457</Telefon>
+            <Email>veronika.lange@kunde.com</Email>
+            <Branche>IT-Beratung</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>43</KundenID>
+            <Vorname>Nils</Vorname>
+            <Nachname>Schmitt</Nachname>
+            <Straße>Industriestraße 6</Straße>
+            <PLZ>45127</PLZ>
+            <Ort>Essen</Ort>
+            <Telefon>0205234567</Telefon>
+            <Email>nils.schmitt@kunde.com</Email>
+            <Branche>Maschinenbau</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>44</KundenID>
+            <Vorname>Melanie</Vorname>
+            <Nachname>Jung</Nachname>
+            <Straße>Bergstraße 14</Straße>
+            <PLZ>28195</PLZ>
+            <Ort>Bremen</Ort>
+            <Telefon>0423234567</Telefon>
+            <Email>melanie.jung@kunde.com</Email>
+            <Branche>Marketing</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>45</KundenID>
+            <Vorname>Robin</Vorname>
+            <Nachname>Schwarz</Nachname>
+            <Straße>Seestraße 4</Straße>
+            <PLZ>60327</PLZ>
+            <Ort>Frankfurt</Ort>
+            <Telefon>0698234567</Telefon>
+            <Email>robin.schwarz@kunde.com</Email>
+            <Branche>Finanzen</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>46</KundenID>
+            <Vorname>Anja</Vorname>
+            <Nachname>Neumann</Nachname>
+            <Straße>Mühlenweg 9</Straße>
+            <PLZ>80335</PLZ>
+            <Ort>München</Ort>
+            <Telefon>0896234567</Telefon>
+            <Email>anja.neumann@kunde.com</Email>
+            <Branche>IT-Beratung</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>47</KundenID>
+            <Vorname>Gerd</Vorname>
+            <Nachname>Huber</Nachname>
+            <Straße>Dorfweg 5</Straße>
+            <PLZ>20099</PLZ>
+            <Ort>Hamburg</Ort>
+            <Telefon>0406234567</Telefon>
+            <Email>gerd.huber@kunde.com</Email>
+            <Branche>Baugewerbe</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>48</KundenID>
+            <Vorname>Kerstin</Vorname>
+            <Nachname>Schulze</Nachname>
+            <Straße>Am Park 1</Straße>
+            <PLZ>70174</PLZ>
+            <Ort>Stuttgart</Ort>
+            <Telefon>0711623456</Telefon>
+            <Email>kerstin.schulze@kunde.com</Email>
+            <Branche>Einzelhandel</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>49</KundenID>
+            <Vorname>Michael</Vorname>
+            <Nachname>Meyer</Nachname>
+            <Straße>Lindenallee 3</Straße>
+            <PLZ>10115</PLZ>
+            <Ort>Berlin</Ort>
+            <Telefon>0306234567</Telefon>
+            <Email>michael.meyer@kunde.com</Email>
+            <Branche>Consulting</Branche>
+        </kunde>
+        <kunde>
+            <KundenID>50</KundenID>
+            <Vorname>Susanne</Vorname>
+            <Nachname>Fink</Nachname>
+            <Straße>Hauptstraße 16</Straße>
+            <PLZ>60311</PLZ>
+            <Ort>Frankfurt</Ort>
+            <Telefon>0699234567</Telefon>
+            <Email>susanne.fink@kunde.com</Email>
+            <Branche>IT-Beratung</Branche>
+        </kunde>
+    </kunden>
+    <mitarbeiter_kunden>
+        <beziehung>
+            <MitarbeiterID>1</MitarbeiterID>
+            <KundenID>1</KundenID>
+        </beziehung>
+        <beziehung>
+            <MitarbeiterID>2</MitarbeiterID>
+            <KundenID>2</KundenID>
+        </beziehung>
+    </mitarbeiter_kunden>
+</shareempdb>

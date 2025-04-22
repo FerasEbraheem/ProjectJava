@@ -1,0 +1,19 @@
+@startuml
+actor Benutzer
+
+rectangle "Employee Management System" {
+  usecase "Tabellen anzeigen" as UC1
+  usecase "XML zu Datenbank importieren" as UC2
+  usecase "Datenbank zu XML exportieren" as UC3
+  usecase "Datensatz hinzufügen" as UC4
+  usecase "Datensatz löschen" as UC5
+  usecase "Datensatz suchen" as UC6
+}
+
+Benutzer --> UC1
+Benutzer --> UC2
+Benutzer --> UC3
+Benutzer --> UC4
+Benutzer --> UC5
+Benutzer --> UC6
+@enduml

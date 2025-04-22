@@ -1,0 +1,57 @@
+@startuml ER_Diagram
+entity "Mitarbeiter" {
+  +MitarbeiterID : int
+  --
+  Vorname : string
+  Nachname : string
+  Straße : string
+  PLZ : string
+  Ort : string
+  Telefon : string
+  Email : string
+}
+
+entity "Externe Mitarbeiter" {
+  +ExterneID : int
+  --
+  Vorname : string
+  Nachname : string
+  Straße : string
+  PLZ : string
+  Ort : string
+  Telefon : string
+  Email : string
+  FirmaID : int
+}
+
+entity "Firmen" {
+  +FirmaID : int
+  --
+  Name : string
+  Adresse : string
+}
+
+entity "Kunden" {
+  +KundenID : int
+  --
+  Vorname : string
+  Nachname : string
+  Straße : string
+  PLZ : string
+  Ort : string
+  Telefon : string
+  Email : string
+  Branche : string
+}
+
+entity "Mitarbeiter_Kunden" {
+  +MitarbeiterID : int
+  +KundenID : int
+}
+
+' Beziehungen:
+Mitarbeiter_Kunden }--|| Mitarbeiter : "enthält"
+Mitarbeiter_Kunden }--|| Kunden : "enthält"
+"Externe Mitarbeiter" }--|| Firmen : "referenziert"
+
+@enduml

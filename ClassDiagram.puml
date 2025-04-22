@@ -1,0 +1,89 @@
+@startuml
+' Paket "Anwendung" enthält die Hauptanwendung
+package "Anwendung" {
+    class EmployeeManagementApp {
+        - tabelle : TableView<String>
+        - tableButtonsBox : VBox
+        - currentTable : String
+        - currentPrimaryKeyName : String
+        - currentColumnNames : List<String>
+        - searchComboBox : ComboBox<String>
+        - btnSearch : Button
+        --
+        - verbindeDB() : Connection
+        - ladeDaten(tabelleName : String) : void
+        - searchInTable(column : String, searchValue : String) : void
+        - importiereDatenAusXML(xmlFile : File) : void
+        - ladeTabellenNamen() : void
+        - exportiereDatenNachXML() : void
+        - exportiereTabelle(conn : Connection, doc : Document, root : Element, tabelleName : String) : void
+        - zeigeFehler(nachricht : String) : void
+        - zeigeErfolg(nachricht : String) : void
+        + start(primaryStage : Stage) : void
+        + main(args : String[]) : void
+    }
+}
+
+' Hilfsklassen
+package "Hilfsklassen" {
+    class DBHelper {
+        {static} + getConnection() : Connection
+    }
+
+    class DataImporter {
+        {static} + importFirmen(conn : Connection, doc : Document) : void
+        {static} + importMitarbeiter(conn : Connection, doc : Document) : void
+        {static} + importExterneMitarbeiter(conn : Connection, doc : Document) : void
+        {static} + importKunden(conn : Connection, doc : Document) : void
+        {static} + importMitarbeiterKunden(conn : Connection, doc : Document) : void
+    }
+}
+
+' Datenmodell (Entitäten der Datenbank)
+package "Datenmodell" {
+    ' Neue Basisklasse
+    abstract class Person {
+        - Vorname : String
+        - Nachname : String
+        - Straße : String
+        - PLZ : String
+        - Ort : String
+        - Telefon : String
+        - Email : String
+    }
+
+    class Mitarbeiter {
+        - MitarbeiterID : int
+    }
+    Mitarbeiter --|> Person
+
+    class ExterneMitarbeiter {
+        - ExterneID : int
+        - FirmaID : int
+    }
+    ExterneMitarbeiter --|> Person
+
+    class Kunde {
+        - KundenID : int
+        - Branche : String
+    }
+    Kunde --|> Person
+
+    class Firma {
+        - FirmaID : int
+        - Name : String
+        - Adresse : String
+    }
+
+    class MitarbeiterKunde {
+        - MitarbeiterID : int
+        - KundenID : int
+    }
+}
+
+' Beziehungen
+ExterneMitarbeiter --> Firma : "referenziert"
+MitarbeiterKunde --> Mitarbeiter : "enthält MitarbeiterID"
+MitarbeiterKunde --> Kunde : "enthält KundenID"
+
+@enduml

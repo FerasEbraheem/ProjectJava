@@ -1,0 +1,39 @@
+<!ELEMENT shareempdb (schema, firmen, mitarbeiter, externe_mitarbeiter, kunden, mitarbeiter_kunden)>
+
+        <!ELEMENT schema (#PCDATA)>
+
+        <!ELEMENT firmen (firma+)>
+        <!ELEMENT firma (FirmaID, Name, Adresse)>
+        <!ELEMENT FirmaID (#PCDATA)>
+        <!ELEMENT Name (#PCDATA)>
+        <!ELEMENT Adresse (#PCDATA)>
+
+        <!ELEMENT mitarbeiter (person+)>
+        <!ELEMENT person (MitarbeiterID, Vorname, Nachname, Straße, PLZ, Ort, Telefon, Email)>
+        <!ELEMENT MitarbeiterID (#PCDATA)>
+
+        <!-- Gemeinsame Elemente wie Name, Adresse, Straße, PLZ, Ort, Telefon, E-Mail werden nur einmal definiert-->
+        <!ELEMENT Vorname (#PCDATA)>
+        <!ELEMENT Nachname (#PCDATA)>
+        <!ELEMENT Straße (#PCDATA)>
+        <!ELEMENT PLZ (#PCDATA)>
+        <!ELEMENT Ort (#PCDATA)>
+        <!ELEMENT Telefon (#PCDATA)>
+        <!ELEMENT Email (#PCDATA)>
+
+        <!ELEMENT externe_mitarbeiter (externe_person+)>
+        <!ELEMENT externe_person (ExterneID, Vorname, Nachname, Straße, PLZ, Ort, Telefon, Email, FirmaID_extern)>
+        <!ELEMENT ExterneID (#PCDATA)>
+        <!ELEMENT FirmaID_extern (#PCDATA)>
+
+        <!ELEMENT kunden (kunde+)>
+        <!ELEMENT kunde (KundenID, Vorname, Nachname, Straße, PLZ, Ort, Telefon, Email, Branche)>
+        <!ELEMENT KundenID (#PCDATA)>
+        <!ELEMENT Branche (#PCDATA)>
+
+        <!ELEMENT mitarbeiter_kunden (beziehung+)>
+        <!ELEMENT beziehung (MitarbeiterID, KundenID)>
+
+        <!--Für Elemente, die sowohl mit Firma als auch mit externe_person verknüpft sind,
+        wurde das Element FirmaID im Abschnitt Firma verwendet und in externe_person in FirmaID_extern umbenannt,
+        um Konflikte zu vermeiden-->
