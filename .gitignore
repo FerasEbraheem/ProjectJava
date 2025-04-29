@@ -17,3 +17,6 @@ openjfx-*/
 # Ignore OS generated files
 .DS_Store
 Thumbs.db
+
+# Ignore JavaDoc output
+javaDoc/
