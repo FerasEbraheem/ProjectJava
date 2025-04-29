@@ -11,9 +11,6 @@ target/
 # Ignore Java compiled files
 *.class
 
-# Ignore JavaDoc output
-javaDoc/
-
 # Ignore SDKs or external libraries
 openjfx-*/
 
